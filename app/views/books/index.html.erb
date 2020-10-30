@@ -1,2 +1,44 @@
-<h1>Books#index</h1>
-<p>Find me in app/views/books/index.html.erb</p>
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>index</title>
+  </head>
+
+  <body>
+    <%= notice %>
+    <%= alert %>
+    <h1>Books</h1>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Body</th>
+          <th colSpan=3></th>
+        </tr>
+      </thead>
+      <% @books.each do |book| %>
+        <tbody>
+          <tr>
+            <td><%= book.title %></td>
+            <td><%= book.body %></td>
+            <td><%= link_to "Show", "/books/#{book.id}" %></td>
+            <td><%= link_to "Edit", "/books/#{book.id}/edit" %></td>
+            <td><%= link_to "Destroy", "/books/#{book.id}", method: :delete, "data-confirm" => "Are you sure?" %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+
+    <h2>New book</h2>
+    <%= form_with model: @book, local:true do |f| %>
+      <p>Title</p>
+      <%= f.text_field :title %>
+      <p>Body</p>
+      <%= f.text_area :body %>
+      <br><%= f.submit 'Create Book' %></br>
+    <% end %>
+
+  </body>
+</html>
