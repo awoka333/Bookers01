@@ -6,6 +6,7 @@
   </head>
 
   <body>
+  <%= notice %>
     <p><strong>Title:</strong>
       <%= @book.title %>
     </p>
@@ -13,7 +14,7 @@
       <strong>Body:</strong>
       <%= @book.body %>
     </p>
-    <%= link_to "Edit |", "/books/#{@book.id}/edit" %>
-    <%= link_to "Back", "/books" %>
+<%= link_to "Edit", edit_book_path(@book) %>
+<%= link_to "Back", books_path %>
   </body>
 </html>

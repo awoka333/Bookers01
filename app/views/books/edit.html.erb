@@ -6,18 +6,22 @@
   </head>
 
   <body>
-
-    <h1>Editing Book</h1>
     <%= notice %>
-    <%= alert %>
-        <%= form_with model: @book, url:"/books/#{@book.id}/edit", local:true do |f| %>
+    <% if @book.errors.any? %>
+       <p>error!!</p>
+       <% @book.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+       <% end %>
+     <% end %>
+    <h1>Editing Book</h1>
+        <%= form_for(@book) do |f| %>
           <h4>Title</h4>
           <%= f.text_field :title %>
           <h4>Body</h4>
           <%= f.text_area :body %>
           <%= f.submit 'Update Book' %>
         <% end %>
-    <%= link_to "Show |", "/books/#{@book.id}" %>
-    <%= link_to "Back", "/books" %>
+    <%= link_to "show", book_path(@book) %>
+    <%= link_to "Back", books_path %>
   </body>
 </html>
